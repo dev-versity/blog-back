@@ -15,6 +15,7 @@ db.once("open", function () {
 });
 
 const articleRouter = require("./routes/articleRoute");
+app.use(express.urlencoded({ extended: true}))
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
