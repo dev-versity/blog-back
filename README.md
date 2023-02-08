@@ -5,4 +5,5 @@
 - [x] Ajouter `mongoose`
 - [x] Ajouter schéma `article` 
 - [x] Ajouter connection à `MongoDB`
-- [ ] CRUD des articles
+- [x] CRUD des articles
+  - [ ] Update method
