@@ -4,7 +4,7 @@ const articleRouter = require("express").Router();
 articleRouter.get("/all", (req, res) => {
   Article.find({}, (err, articles) => {
     if ( err ) res.send(err);
-    res.send(articles);
+    res.render("allArticles", {articles: articles});
   })
 });
 

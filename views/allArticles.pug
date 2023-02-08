@@ -1,0 +1,7 @@
+extends layout 
+block content 
+    h1 Tout les Articles 
+    each article in articles 
+        h3= article.title 
+        h3= article.description 
+        p= article.content 
