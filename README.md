@@ -6,4 +6,5 @@
 - [x] Ajouter schéma `article` 
 - [x] Ajouter connection à `MongoDB`
 - [x] CRUD des articles
-  - [ ] Update method
+  - [x] Update method
+  - [x] Delete method

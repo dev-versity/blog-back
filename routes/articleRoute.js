@@ -26,6 +26,13 @@ articleRouter.put("/:id", (req, res) => {
   })
 });
 
+articleRouter.delete("/:id", (req, res) => {
+  Article.findByIdAndRemove(req.params.id, (err, article) => {
+    if ( err ) res.send(err)
+    res.send({message: "Article supprimé avec succès"})
+  })
+});
+
 articleRouter.post("/create", (req, res) => {
   let newArticle = new Article(req.body);
   newArticle.save((error, article) => {
