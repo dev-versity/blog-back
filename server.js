@@ -15,6 +15,7 @@ db.once("open", function () {
 });
 
 const articleRouter = require("./routes/articleRoute");
+const userRouter = require("./routes/userRoute");
 app.set('view engine', 'pug');
 app.set('views', __dirname + '/views');
 
@@ -26,6 +27,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/articles", articleRouter);
+app.use("/users", userRouter);
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);

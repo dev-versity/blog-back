@@ -8,3 +8,4 @@
 - [x] CRUD des articles
   - [x] Update method
   - [x] Delete method
+- [x] L'authentification simple avec un login
