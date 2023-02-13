@@ -2,6 +2,8 @@ extends layout
 block content 
     h1 Tout les Articles 
     each article in articles 
-        h3= article.title 
-        h3= article.description 
-        p= article.content 
+        .card(style="width: 18rem;")
+        .card-body
+            h5.card-title= article.title
+            p.card-text= article.description
+            a.btn.btn-primary(href=`/articles/${article.id}`) More

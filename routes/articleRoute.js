@@ -32,7 +32,15 @@ articleRouter.post("/create", (req, res) => {
 articleRouter.get("/:id", (req, res) => {
   Article.findById(req.params.id, (err, article) => {
     if ( err ) res.send(err)
-    res.send(article)
+    res.render("article", {article: article});
+  })
+})
+
+
+articleRouter.get("/:id/edit", (req, res) => {
+  Article.findById(req.params.id, (err, article) => {
+    if ( err ) res.send(err)
+    res.render("edit", {article: article});
   })
 })
 
@@ -40,13 +48,15 @@ articleRouter.get("/:id", (req, res) => {
 
 
 
-articleRouter.put("/:id", (req, res) => {
+
+
+articleRouter.post("/:id/edit", (req, res) => {
   Article.findByIdAndUpdate(req.params.id, req.body, (err, article) => {
     console.log(req.body)
     if (err) {
       res.send(err)
     } else {
-      res.send(article)
+      res.redirect(`/articles/${article.id}`);
     }
   })
 });
