@@ -26,7 +26,7 @@ userRouter.post('/signin', async (req, res) => {
     const validPassword = await user.validatePassword(password, user.password);
     if (!validPassword) {
         const error = new Error('wrong credentials')
-        throw error
+        res.send(error)
     }
     return res.send('Bravo! You are connected')
 })
