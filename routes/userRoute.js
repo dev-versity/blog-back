@@ -15,4 +15,20 @@ userRouter.post('/signup', async (req, res) => {
   });
 })
 
+userRouter.get('/signin', (req, res) => {
+    res.render('signin')
+})
+
+userRouter.post('/signin', async (req, res) => {
+    const email = req.body.email;
+    const password = req.body.password;
+    const user = await User.findOne({email}).select('+password');
+    const validPassword = await user.validatePassword(password, user.password);
+    if (!validPassword) {
+        const error = new Error('wrong credentials')
+        throw error
+    }
+    return res.send('Bravo! You are connected')
+})
+
 module.exports = userRouter;
