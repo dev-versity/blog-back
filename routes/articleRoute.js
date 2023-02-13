@@ -1,6 +1,8 @@
 const Article       = require("../models/Article");
 const articleRouter = require("express").Router();
 
+
+
 articleRouter.get("/all", (req, res) => {
   Article.find({}, (err, articles) => {
     if ( err ) res.send(err);
@@ -8,12 +10,35 @@ articleRouter.get("/all", (req, res) => {
   })
 });
 
+
+
+
+articleRouter.get("/create", (req, res) => {
+  res.render("create")
+})
+
+
+articleRouter.post("/create", (req, res) => {
+  let newArticle = new Article(req.body);
+  newArticle.save((error, article) => {
+    if ( error ) res.send(error)
+    res.redirect("/articles/all");
+  });
+})
+
+
+
+
 articleRouter.get("/:id", (req, res) => {
   Article.findById(req.params.id, (err, article) => {
     if ( err ) res.send(err)
     res.send(article)
   })
 })
+
+
+
+
 
 articleRouter.put("/:id", (req, res) => {
   Article.findByIdAndUpdate(req.params.id, req.body, (err, article) => {
@@ -26,6 +51,9 @@ articleRouter.put("/:id", (req, res) => {
   })
 });
 
+
+
+
 articleRouter.delete("/:id", (req, res) => {
   Article.findByIdAndRemove(req.params.id, (err, article) => {
     if ( err ) res.send(err)
@@ -33,13 +61,7 @@ articleRouter.delete("/:id", (req, res) => {
   })
 });
 
-articleRouter.post("/create", (req, res) => {
-  let newArticle = new Article(req.body);
-  newArticle.save((error, article) => {
-    if ( error ) res.send(error)
-    res.send(article);
-  });
-})
+
 
 
 module.exports = articleRouter;
