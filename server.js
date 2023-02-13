@@ -15,6 +15,10 @@ db.once("open", function () {
 });
 
 const articleRouter = require("./routes/articleRoute");
+app.set('view engine', 'pug');
+app.set('views', __dirname + '/views');
+
+
 app.use(express.urlencoded({ extended: true}))
 
 app.get("/", (req, res) => {
