@@ -31,7 +31,8 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-app.use("/articles", articleRouter);
+
+app.use("/articles", passportJwt.authenticate(), articleRouter);
 app.use("/users", userRouter);
 
 app.listen(port, () => {

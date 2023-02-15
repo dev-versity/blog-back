@@ -30,7 +30,8 @@ userRouter.post('/signin', async (req, res) => {
         const error = new Error('wrong credentials')
         res.send(error)
     }
-    return res.send('Bravo! You are connected')
+    const token = jwt.encode({id:user.id}, config.secret)
+    return res.send({msg:'Bravo! You are connected',user,token})
 })
 
 module.exports = userRouter;

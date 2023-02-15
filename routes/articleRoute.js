@@ -19,7 +19,12 @@ articleRouter.get("/create", (req, res) => {
 
 
 articleRouter.post("/create", (req, res) => {
-  let newArticle = new Article(req.body);
+  let newArticle = new Article();
+  newArticle.title = req.body.title
+  newArticle.description = req.body.description
+  newArticle.content = req.body.content
+  newArticle.user = req.user
+
   newArticle.save((error, article) => {
     if ( error ) res.send(error)
     res.redirect("/articles/all");
