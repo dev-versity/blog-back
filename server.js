@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 
 const port = process.env.PORT || 3000;
-const passportJwt= require ("./middlewares/passportJwt") ()
+const passportJwt= require ("./middlewares/passportJwt")()
 
 const mongoose = require('mongoose')
 

@@ -1,6 +1,7 @@
 const userRouter = require("express").Router();
 const User = require("../models/User")
-
+const config = require("../config")
+const jwt = require("jwt-simple")
 userRouter.get('/signup', (req, res) => {
     res.render('signup')
 })
@@ -11,7 +12,8 @@ userRouter.post('/signup', async (req, res) => {
     newUser.password = await newUser.encryptPassword(req.body.password);
     newUser.save((error, user) => {
     if ( error ) res.send(error)
-    res.send(user);
+    const token = jwt.encode({id:user.id}, config.secret)
+    res.send({user, token });
   });
 })
 
