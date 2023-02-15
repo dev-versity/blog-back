@@ -5,7 +5,7 @@ const articleSchema = new Schema({
   title: String,
   description: String,
   content: String,
-  // user: {type: Schema.Types.ObjectId, ref: "User"}
+  user: {type: Schema.Types.ObjectId, ref: "User"}
 
 });
 
