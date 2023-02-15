@@ -3,16 +3,20 @@ const app = express();
 
 const port = process.env.PORT || 3000;
 
-const mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost:27017/blogdb", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-const db = mongoose.connection;
-db.on("error", console.error.bind(console, "connection error:"));
-db.once("open", function () {
-  console.log("Connected to MongoDB");
-});
+const mongoose = require('mongoose')
+
+mongoose.Promise = global.Promise
+
+const db = mongoose.connection
+db.once("open", () => {
+    console.log('[📚Database] MongoDB connected')
+})
+
+main().catch(err => console.log(err));
+
+async function main() {
+  await mongoose.connect('mongodb://127.0.0.1:27017/bookstoredb');
+}
 
 const articleRouter = require("./routes/articleRoute");
 const userRouter = require("./routes/userRoute");

@@ -9,7 +9,7 @@ articleRouter.get("/all", (req, res) => {
     res.render("allArticles", {articles: articles});
   })
 });
-
+ 
 
 
 
